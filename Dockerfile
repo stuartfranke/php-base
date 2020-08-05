@@ -1,7 +1,6 @@
 FROM php:7.3.20-fpm-alpine3.12
 
 ENV COMPOSER_ALLOW_SUPERUSER 1
-ENV COMPOSER_PACKAGIST_REPO_URL "https://packagist.co.za"
 ENV USER_DIRECTORY "/root"
 ENV NGINX_GROUP "www-data"
 ENV NGINX_USER "www-data"
@@ -56,7 +55,6 @@ RUN chmod +x ${USER_DIRECTORY}/composer-installer \
     && mv composer.phar /usr/local/bin/composer \
     && chmod +x /usr/local/bin/composer \
     && echo "{}" > ${USER_DIRECTORY}/.composer/composer.json \
-    && composer config --global repo.packagist composer ${COMPOSER_PACKAGIST_REPO_URL} \
     && rm ${USER_DIRECTORY}/composer-installer
 
 # Install Node / NPM / Yarn
